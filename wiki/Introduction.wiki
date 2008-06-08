@@ -1,0 +1,14 @@
+#summary Quick Start
+
+
+= Short version =
+This project provides the `SimpleCaptcha` class. Simple usage:
+
+{{{
+session_start();
+$captcha = new SimpleCaptcha();
+// Change configuration...
+//$captcha->wordsFile = 'words/es.txt'; // Enable spanish words
+//$captcha->session_var = 'secretword'; // Change session variable
+$captcha->CreateImage();
+}}}
