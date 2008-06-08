@@ -2,7 +2,9 @@
 
 
 = Short version =
-This project provides the `SimpleCaptcha` class. Simple usage:
+This project provides the `SimpleCaptcha` class.
+
+Basic example:
 
 {{{
 session_start();
@@ -12,3 +14,8 @@ $captcha = new SimpleCaptcha();
 //$captcha->session_var = 'secretword'; // Change session variable
 $captcha->CreateImage();
 }}}
+
+
+... will output:
+
+[http://cool-php-captcha.googlecode.com/files/example.jpg]
