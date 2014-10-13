@@ -213,12 +213,14 @@ class SimpleCaptcha
      */
     public function DisplayImage()
     {
-        $this->CreateImage();
+        $text = $this->CreateImage();
 
         /**
          * Output
          */
         $this->OutputImage();
+
+        return $text;
     }
     public function CreateImage()
     {
