@@ -191,6 +191,9 @@ class SimpleCaptcha
     public function __construct($config = array())
     {
     }
+    /**
+     *
+     */
     public function __destruct()
     {
         $this->Dispose(false);
@@ -199,7 +202,7 @@ class SimpleCaptcha
      *
      * @param string $isDisposing
      */
-    protected function Dispose($isDisposing = true)
+    protected function Dispose($disposing = true)
     {
         if (is_resource($this->im))
         {

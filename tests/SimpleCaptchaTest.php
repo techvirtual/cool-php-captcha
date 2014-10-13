@@ -18,15 +18,33 @@ class SimpleCaptchaTest extends \PHPUnit_Framework_TestCase
 {
     /**
      *
-     * @var SimpleCaptcha
+     * @var SimpleCaptchaMock
      */
     private $captcha;
+    /**
+     *
+     * @var \Mockery\Expectation
+     */
+    private $dispose;
     /* (non-PHPdoc)
      * @see PHPUnit_Framework_TestCase::setUp()
      */
     public function setUp()
     {
-        $this->captcha = new SimpleCaptcha();
+        $mock = \Mockery::mock();
+
+        $this->captcha = new SimpleCaptchaMock(
+            $mock);
+
+        $this->dispose = $this->captcha->mock->shouldReceive(
+            'Dispose');
+    }
+    /* (non-PHPdoc)
+     * @see PHPUnit_Framework_TestCase::tearDown()
+     */
+    protected function tearDown()
+    {
+        \Mockery::close();
     }
     /**
      */
@@ -35,5 +53,44 @@ class SimpleCaptchaTest extends \PHPUnit_Framework_TestCase
         $text = $this->captcha->CreateImage();
 
         $this->assertNotEmpty($text);
+    }
+    /**
+     */
+    public function testGarbageCollection()
+    {
+        $this->dispose->with(false)->once();
+
+        $this->captcha = null;
+    }
+}
+
+/**
+ *
+ * @author José Nascimento <joseaugustodearaujonascimento@gmail.com>
+ */
+class SimpleCaptchaMock extends SimpleCaptcha
+{
+    /**
+     *
+     * @var \Mockery\MockInterface
+     */
+    public $mock;
+    /**
+     *
+     * @param \PHPUnit_Framework_TestCase $test
+     */
+    public function __construct(\Mockery\MockInterface $mock)
+    {
+        $this->mock = $mock;
+    }
+    /* (non-PHPdoc)
+     * @see \CoolCaptcha\SimpleCaptcha::Dispose()
+     */
+    protected function Dispose($disposing = true)
+    {
+        // printf('Disposing (%d)', $disposing);
+        parent::Dispose($disposing);
+
+        $this->mock->Dispose($disposing);
     }
 }
