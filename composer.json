@@ -10,6 +10,11 @@
         {
             "name": "Jose Rodriguez",
             "email": "jose.rodriguez@exec.cl"
+        },
+        {
+            "name":         "José Nascimento",
+            "email":        "joseaugustodearaujonascimento@gmail.com",
+            "homepage":     "http://github.com/augusteiner"
         }
     ],
     "require": {
