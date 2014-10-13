@@ -1,7 +1,6 @@
 # Simple usage
 
 ```php
-<?php
 
 use CoolCaptcha\SimpleCaptcha;
 

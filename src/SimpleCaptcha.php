@@ -200,7 +200,7 @@ class SimpleCaptcha
     }
     /**
      *
-     * @param string $isDisposing
+     * @param string $disposing
      */
     protected function Dispose($disposing = true)
     {
