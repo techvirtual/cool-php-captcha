@@ -1,5 +1,7 @@
 # Simple usage
 
+[![Build Status](https://travis-ci.org/techvirtual/cool-php-captcha.svg?branch=master)](https://travis-ci.org/techvirtual/cool-php-captcha)
+
 ```php
 
 use CoolCaptcha\SimpleCaptcha;
