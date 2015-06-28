@@ -38,7 +38,7 @@ class SimpleCaptcha
      * "resources" by default.
      * For security reasons, is better move
      * this
-     * directory to another location outise the web server
+     * directory to another location outside the web server
      */
     public $resourcesPath = 'assets';
 
@@ -340,21 +340,21 @@ class SimpleCaptcha
         }
 
         $words = "abcdefghijlmnopqrstvwyz";
-        $vocals = "aeiou";
+        $vowels = "aeiou";
 
         $text = "";
-        $vocal = rand(0, 1);
+        $vowel = rand(0, 1);
         for ($i = 0; $i < $length; $i++)
         {
-            if ($vocal)
+            if ($vowel)
             {
-                $text .= substr($vocals, mt_rand(0, 4), 1);
+                $text .= substr($vowels, mt_rand(0, 4), 1);
             }
             else
             {
                 $text .= substr($words, mt_rand(0, 22), 1);
             }
-            $vocal = !$vocal;
+            $vowel = !$vowel;
         }
         return $text;
     }
@@ -408,7 +408,7 @@ class SimpleCaptcha
         if ($extended)
         {
             $text = preg_split('//', $text, -1, PREG_SPLIT_NO_EMPTY);
-            $vocals = array(
+            $vowels = array(
                 'a',
                 'e',
                 'i',
@@ -416,9 +416,9 @@ class SimpleCaptcha
                 'u');
             foreach ($text as $i => $char)
             {
-                if (mt_rand(0, 1) && in_array($char, $vocals))
+                if (mt_rand(0, 1) && in_array($char, $vowels))
                 {
-                    $text[$i] = $vocals[mt_rand(0, 4)];
+                    $text[$i] = $vowels[mt_rand(0, 4)];
                 }
             }
             $text = implode('', $text);
@@ -476,7 +476,7 @@ class SimpleCaptcha
         }
 
         /**
-         * Increase font-size for shortest words: 9% for each glyp
+         * Increase font-size for shortest words: 9% for each glyph
          * missing
          */
         $lettersMissing = $this->maxWordLength - strlen($text);
