@@ -388,17 +388,18 @@ class SimpleCaptcha
         }
 
         $fp = fopen($wordsfile, "r");
-        $length = strlen(fgets($fp));
-        if (!$length)
-        {
-            return false;
+
+        $word = fgets($fp);
+        $lineNumber = 0;
+        while (!feof($fp)) {
+            $aword = fgets($fp);
+            $lineNumber++;
+            if (mt_rand(0, $lineNumber)) {
+                continue;
+            }
+            $word = $aword;
         }
-        $line = rand(1, (filesize($wordsfile) / $length) - 2);
-        if (fseek($fp, $length * $line) == -1)
-        {
-            return false;
-        }
-        $text = trim(fgets($fp));
+        $text = trim($word);
         fclose($fp);
 
         /**
